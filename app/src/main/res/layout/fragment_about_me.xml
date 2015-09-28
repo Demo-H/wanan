@@ -89,7 +89,7 @@
         android:layout_above="@id/about3"
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
-        android:text="版本：3.0"
+        android:text="版本：3.1"
         android:textColor="@color/text_second_day"
         android:textSize="13sp" />
 

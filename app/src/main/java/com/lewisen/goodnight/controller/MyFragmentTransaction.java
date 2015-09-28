@@ -1,5 +1,6 @@
 package com.lewisen.goodnight.controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import com.lewisen.goodnight.view.FavouriteFragment;
 import com.lewisen.goodnight.view.HomeListFragment;
 import com.lewisen.goodnight.view.MainView;
 import com.lewisen.goodnight.view.PictureListFragment;
+import com.lewisen.goodnight.view.ShakeRandomFragment;
 import com.umeng.comm.ui.fragments.CommunityMainFragment;
 
 /**
@@ -27,6 +29,7 @@ public class MyFragmentTransaction implements View.OnClickListener {
     private Button communityButton;
     private Button collectionButton;
     private Button aboutButton;
+    private Button randomButton;
     private Context mContext;
     private CharSequence mTitle;
     //由mainView实现的监听器调用接口
@@ -39,26 +42,31 @@ public class MyFragmentTransaction implements View.OnClickListener {
     private PictureListFragment pictureListFragment;
     private FavouriteFragment favouriteFragment;
     private AboutMeFragment aboutMeFragment;
+    private ShakeRandomFragment shakeRandomFragment;
 
-    public MyFragmentTransaction(Context mContext, Button homeButton, Button articleButton,
-                                 Button pictureButton, Button communityButton, Button collectionButton, Button aboutButton) {
+    public MyFragmentTransaction(Context mContext) {
         this.mContext = mContext;
-        this.homeButton = homeButton;
-        this.articleButton = articleButton;
-        this.pictureButton = pictureButton;
-        this.communityButton = communityButton;
-        this.collectionButton = collectionButton;
-        this.aboutButton = aboutButton;
+        Activity activity = (Activity) mContext;
+        homeButton = (Button) activity.findViewById(R.id.home_button);
+        articleButton = (Button) activity.findViewById(R.id.article_button);
+        pictureButton = (Button) activity.findViewById(R.id.picture_button);
+        communityButton = (Button) activity.findViewById(R.id.community_button);
+        collectionButton = (Button) activity.findViewById(R.id.collection_button);
+        aboutButton = (Button) activity.findViewById(R.id.about_button);
+        randomButton = (Button) activity.findViewById(R.id.random_button);
+
         fragmentChange = (onFragmentChange) mContext;
     }
 
     public void init() {
+
         homeButton.setOnClickListener(this);
         articleButton.setOnClickListener(this);
         pictureButton.setOnClickListener(this);
         communityButton.setOnClickListener(this);
         collectionButton.setOnClickListener(this);
         aboutButton.setOnClickListener(this);
+        randomButton.setOnClickListener(this);
         fragmentManager = ((MainView) mContext).getSupportFragmentManager();
 
         //第一次启动 不显示主页栏目
@@ -85,11 +93,14 @@ public class MyFragmentTransaction implements View.OnClickListener {
             case R.id.community_button:
                 showFragment(4);
                 break;
-            case R.id.collection_button:
+            case R.id.random_button:
                 showFragment(5);
                 break;
-            case R.id.about_button:
+            case R.id.collection_button:
                 showFragment(6);
+                break;
+            case R.id.about_button:
+                showFragment(7);
                 break;
         }
         //调用mainview接口关闭drawer
@@ -145,7 +156,18 @@ public class MyFragmentTransaction implements View.OnClickListener {
                 }
                 mTitle = "社区";
                 break;
+
             case 5:
+                if (shakeRandomFragment != null)
+                    transaction.replace(R.id.container_main_view, shakeRandomFragment);
+                else {
+                    shakeRandomFragment = new ShakeRandomFragment();
+                    transaction.replace(R.id.container_main_view, shakeRandomFragment);
+                }
+                mTitle = "旧时光";
+                break;
+
+            case 6:
                 if (favouriteFragment != null)
                     transaction.replace(R.id.container_main_view, favouriteFragment);
                 else {
@@ -154,7 +176,7 @@ public class MyFragmentTransaction implements View.OnClickListener {
                 }
                 mTitle = "收藏";
                 break;
-            case 6:
+            case 7:
                 if (aboutMeFragment != null)
                     transaction.replace(R.id.container_main_view, aboutMeFragment);
                 else {

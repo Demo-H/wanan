@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import com.lewisen.goodnight.R;
 import com.lewisen.goodnight.controller.DisplayImage;
 import com.lewisen.goodnight.dataSrc.MyServer;
-import com.lewisen.goodnight.util.Util;
 import com.lewisen.goodnight.view.MainView;
 
 /**
@@ -38,13 +37,11 @@ public class SecondActivity extends Activity {
         } else {
             // 渐变展示启动屏,这里通过动画来设置了开启应用程序的界面
             AlphaAnimation aa = new AlphaAnimation(0.8f, 1.0f);
-            aa.setDuration(2500);
-            view.startAnimation(aa);
+            aa.setDuration(2000);
             // 给动画添加监听方法
             aa.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationEnd(Animation arg0) {
-
                     redirectTo();
                 }
 
@@ -57,9 +54,8 @@ public class SecondActivity extends Activity {
                 }
 
             });
+            view.startAnimation(aa);
         }
-
-
     }
 
     /**

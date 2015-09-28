@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -95,20 +94,13 @@ public class MainView extends AppCompatActivity implements MyFragmentTransaction
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        Button homeButton = (Button) findViewById(R.id.home_button);
-        Button articleButton = (Button) findViewById(R.id.article_button);
-        Button pictureButton = (Button) findViewById(R.id.picture_button);
-        Button communityButton = (Button) findViewById(R.id.community_button);
-        Button collectionButton = (Button) findViewById(R.id.collection_button);
-        Button aboutButton = (Button) findViewById(R.id.about_button);
 
         TextView loginText = (TextView) findViewById(R.id.login_text);
         ImageView userIconView = (ImageView) findViewById(R.id.user_icon);
 
         login = new Login(this, loginText, userIconView);
 
-        myFragmentTransaction = new MyFragmentTransaction(mContext, homeButton, articleButton,
-                pictureButton, communityButton, collectionButton, aboutButton);
+        myFragmentTransaction = new MyFragmentTransaction(mContext);
         myFragmentTransaction.init();
 
         myDrawer = new MyDrawer(mContext);

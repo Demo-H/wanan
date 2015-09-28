@@ -18,7 +18,9 @@ import com.umeng.comm.core.sdkmanager.LocationSDKManager;
 import com.umeng.comm.ui.location.DefaultLocationImpl;
 
 /**
- * 全局
+ * ***开源***
+ * 代码地址 https://github.com/Liukeshen1221/wanan
+ * 作者：qq592614804
  * Created by Lewisen on 2015/9/4.
  */
 public class MyApplication extends Application {
@@ -64,7 +66,7 @@ public class MyApplication extends Application {
 
         //音乐
         music = new Music();
-        }
+    }
 
     @Override
     public void onTerminate() {

@@ -9,7 +9,14 @@ import android.view.animation.Animation;
 
 import com.lewisen.goodnight.R;
 import com.lewisen.goodnight.controller.IDManage;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
+/**
+ * ***开源***
+ * 代码地址 https://github.com/Liukeshen1221/wanan
+ * 作者：qq592614804
+ * Created by Lewisen on 2015/9/4.
+ */
 public class MainActivity extends Activity {
 
     @Override
@@ -23,14 +30,20 @@ public class MainActivity extends Activity {
 
         // 渐变展示启动屏,这里通过动画来设置了开启应用程序的界面
         AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
-        aa.setDuration(2000);
-        view.startAnimation(aa);
+        aa.setDuration(1500);
         // 给动画添加监听方法
         aa.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationEnd(Animation arg0) {
-                //跳转到第二屏
-                redirectToSecond();
+                OnlineConfigAgent.getInstance().updateOnlineConfig(MainActivity.this);
+                String adSwitch = OnlineConfigAgent.getInstance().getConfigParams(MainActivity.this, "adSwitch");
+
+                if ("true".equals(adSwitch)) {// 显示广告
+                    //跳转到广告
+                    redirectToAD();
+                } else {
+                    redirectToSecond();
+                }
             }
 
             @Override
@@ -43,6 +56,7 @@ public class MainActivity extends Activity {
 
         });
 
+        view.startAnimation(aa);
         //加载最大值
         IDManage.setMaxID(null);
         //加载第二屏图片
@@ -57,18 +71,16 @@ public class MainActivity extends Activity {
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,
                 android.R.anim.fade_out);
-
         finish();
     }
 
-//    private void redirectToMain() {
-//        Intent intent = new Intent(this, MainView.class);
-//        startActivity(intent);
-//        overridePendingTransition(android.R.anim.fade_in,
-//                android.R.anim.fade_out);
-//
-//        finish();
-//    }
+    private void redirectToAD() {
+        Intent intent = new Intent(this, CSplashActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in,
+                android.R.anim.fade_out);
+        finish();
+    }
 
 
 }

@@ -193,12 +193,48 @@
             </LinearLayout>
 
 
-            <!--收藏条目-->
+            <!--穿越条目-->
             <RelativeLayout
                 android:id="@+id/part5"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/drawer_list_divide"
                 android:layout_below="@id/line4"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/random_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/random" />
+
+                <Button
+                    android:id="@+id/random_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/text_primary_day"
+                    android:paddingRight="80dp"
+                    android:text="旧时光"
+                    android:textSize="@dimen/drawer_list_size" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/line5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/part5">
+
+                <include layout="@layout/divide_line" />
+            </LinearLayout>
+
+            <!--收藏条目-->
+            <RelativeLayout
+                android:id="@+id/part6"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/drawer_list_divide"
+                android:layout_below="@id/line5"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -221,20 +257,20 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/line5"
+                android:id="@+id/line6"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/part5">
+                android:layout_below="@id/part6">
 
                 <include layout="@layout/divide_line" />
             </LinearLayout>
 
             <!--关于条目-->
             <RelativeLayout
-                android:id="@+id/part6"
+                android:id="@+id/part7"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/drawer_list_divide"
-                android:layout_below="@id/line5"
+                android:layout_below="@id/line6"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -257,10 +293,10 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/line6"
+                android:id="@+id/line8"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/part6">
+                android:layout_below="@id/part7">
 
                 <include layout="@layout/divide_line" />
             </LinearLayout>
@@ -270,7 +306,7 @@
                 android:id="@+id/part_music"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line6"
+                android:layout_below="@id/line8"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
